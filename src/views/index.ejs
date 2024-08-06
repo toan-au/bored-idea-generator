@@ -36,7 +36,7 @@
         }
 
         .idea {
-            border: 1px solid #caf0fa;
+            border: 1px solid #ebebeb;
             border-radius: 15px;
             padding: 1em;
         }
@@ -56,9 +56,9 @@
         <div class="container">
             <h2>Bored? We have an idea for you</h3>
 
-            <form action="/" >
+            <form action="/" method="post">
                 <select name="type" id="type">
-                    <option value="any" selected="true">Random activity</option>
+                    <option value="any">Random activity</option>
                     <option value="education">education</option>
                     <option value="recreational">recreational</option>
                     <option value="social">social</option>
@@ -68,20 +68,25 @@
                     <option value="busywork">busywork</option>
                 </select>
                 <select name="participants" id="participants">
-                    <option value="0" selected="true">Any number of participants</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    <option value=0>Any number of participants</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
                 </select>
                 <button type="submit">Go</button>
             </form>
             <div class="idea">
-                <h3><%= locals.idea.activity %></h3>
-                <div class="card-bottom">
-                    <p><%= locals.idea.type %></p>
-                    <p>Recommended for <%= locals.idea.participants %> particpant(s)</p>
-                </div>
+                <% if (locals.idea) {%>
+                    <h3><%= locals.idea.activity %></h3>
+                    <div class="card-bottom">
+                        <p><%= locals.idea.type %></p>
+                        <p>Recommended for <strong><%= locals.idea.participants %></strong> particpant(s)</p>
+                    </div>
+                <% } %>
+                <% if (locals.error) { %>
+                    No activities found!
+                <% } %>
             </div>
         </div>
     </main>
